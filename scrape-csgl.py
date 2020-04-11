@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import time
 
 driver = webdriver.Firefox()
 #driver = webdriver.Chrome('/Users/danter.gil-marin/Downloads/chromedriver')
