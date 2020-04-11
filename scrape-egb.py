@@ -18,26 +18,6 @@ time.sleep(5)
 
 soup = BeautifulSoup(driver.page_source,  features ="html.parser")
 matches = soup.find_all("div", class_="lounge-bets-items__item sys-betting")
-toreturn = []
-
 for match in matches:
-        # process text
-        matchtext = match.get_text().strip()
-        info1 = matchtext.split("         ")
-        temp = info1[1].split("   ")
-        team1name = temp[0]
-        team1odds = temp[1][1:]
-        
-        
-        temp = info1[-1].split("       ")
-        temp = temp[1].split("   ")
-        team2name = temp[0]
-        team2odds = temp[1][1:]
-
-        matchtime = info1[0].split("  ")[0]
-
-
-        print("Time: {:30} Team 1: {:15} odds: {:5} Team 2: {:15} odds: {:5}".format(matchtime, team1name, team1odds, team2name, team2odds))
-        
-        # toreturn.append("CSGL {} {} {} {} {} {}".format(info[0]))
+        print(match.get_text().strip())
 
