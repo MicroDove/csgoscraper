@@ -11,7 +11,7 @@ from selenium.webdriver.support.expected_conditions import presence_of_element_l
 
 #This example requires Selenium WebDriver 3.13 or newer
 
-driver = webdriver.Chrome("./chromedriver")
+driver = webdriver.Chrome("./chromedriver.exe")
 wait = WebDriverWait(driver, 4)
 driver.get('https://csgolounge.com/')
 time.sleep(5)
@@ -25,6 +25,8 @@ for match in matches:
         matchtext = match.get_text().strip()
         info1 = matchtext.split("         ")
         temp = info1[1].split("   ")
+        if(len(temp) < 2):
+                continue
         team1name = temp[0]
         team1odds = temp[1][1:]
         
@@ -32,11 +34,13 @@ for match in matches:
         temp = info1[-1].split("       ")
         temp = temp[1].split("   ")
         team2name = temp[0]
+        if(len(temp) < 2):
+                continue
         team2odds = temp[1][1:]
 
         matchtime = info1[0].split("  ")[0]
 
-
+        # at this poit all values are valid
         print("Time: {:30} Team 1: {:15} odds: {:5} Team 2: {:15} odds: {:5}".format(matchtime, team1name, team1odds, team2name, team2odds))
         
         # toreturn.append("CSGL {} {} {} {} {} {}".format(info[0]))
