@@ -11,7 +11,7 @@ from selenium.webdriver.support.expected_conditions import presence_of_element_l
 
 #This example requires Selenium WebDriver 3.13 or newer
 
-driver = webdriver.Firefox("./")
+driver = webdriver.Chrome("./chromedriver")
 wait = WebDriverWait(driver, 4)
 driver.get('https://csgolounge.com/')
 time.sleep(5)
