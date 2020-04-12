@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import requests
-import time
+import time as Time
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -14,7 +14,7 @@ def scrapeCSGL():
         driver = webdriver.Chrome("./chromedriver")
         wait = WebDriverWait(driver, 4)
         driver.get('https://csgolounge.com/')
-        time.sleep(5)
+        Time.sleep(5)
 
         soup = BeautifulSoup(driver.page_source,  features ="html.parser")
         matches = soup.find_all("div", class_="lounge-bets-items__item sys-betting")
@@ -45,4 +45,4 @@ def scrapeCSGL():
                 
                 # toreturn.append("CSGL {} {} {} {} {} {}".format(info[0]))
 
-scrapeCSGL()
+#scrapeCSGL()

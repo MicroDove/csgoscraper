@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
-import time
+import time as Time
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -19,7 +19,7 @@ def scrapeEGB():
     driver.find_element_by_xpath('//*[@class="field__invisible"]').click()
 
 
-    time.sleep(5)
+    Time.sleep(5)
     soup = BeautifulSoup(driver.page_source,  features ="html.parser")
 
     matches = soup.find_all("div", class_="table-bets__content-row")
@@ -44,5 +44,4 @@ def scrapeEGB():
     
 
 # driver.find_element_by_xpath('//*[@class="filters__link-clear"]').click()
-scrapeEGB()
-
+#scrapeEGB()
