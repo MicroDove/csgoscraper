@@ -45,4 +45,4 @@ def scrapeCSGL():
                 
                 # toreturn.append("CSGL {} {} {} {} {} {}".format(info[0]))
 
-#scrapeCSGL()
+# scrapeCSGL()
