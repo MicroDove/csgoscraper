@@ -44,4 +44,4 @@ def scrapeBW():
                 team2odds = odds[1].text
                 print(f"Time: {matchtime} Team 1: {team1name} odds: {team1odds} Team 2: {team2name} odds: {team2odds}")
 
-scrapeBW()
+# scrapeBW()
