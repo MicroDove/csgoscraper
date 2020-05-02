@@ -1,3 +1,5 @@
+from Match import Match
+
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import time as Time
@@ -27,6 +29,7 @@ def scrapeGG():
     # print(matches[0].prettify(), file=test)
     # test.close()
 
+    match_list = []
     for match in matches:
         try:
             time_set = match.find_all("div", class_="matchDateTime__date___2Hw-c")
@@ -42,8 +45,11 @@ def scrapeGG():
                 continue
             team1odds = odds[0].get_text()
             team2odds = odds[1].get_text()
-            print(f"Time: {matchtime} Team 1: {team1name} odds: {team1odds} Team 2: {team2name} odds: {team2odds}")
+            # print(f"Time: {matchtime} Team 1: {team1name} odds: {team1odds} Team 2: {team2name} odds: {team2odds}")
+            match_list.append(Match(matchtime, team1name, team2name, "GG", team1odds, team2odds))
         except:
             continue
+        return match_list
 
-# scrapeGG()
+l = scrapeGG()
+print(len(l))

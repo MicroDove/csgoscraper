@@ -1,3 +1,5 @@
+from Match import Match
+
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import time as Time
@@ -22,6 +24,8 @@ def scrapeBW():
 
     days = soup.find_all("div", class_="collapsablePanel alternativeHeaderBackground")
 
+    match_list = []
+
     for d in days:
         day = d.find_all("div", class_="collapsablePanel")
         for dd in day:
@@ -43,8 +47,11 @@ def scrapeBW():
                     odds = match.find_all("div", class_="odds")
                     team1odds = odds[0].text
                     team2odds = odds[1].text
-                    print(f"Time: {matchtime} Team 1: {team1name} odds: {team1odds} Team 2: {team2name} odds: {team2odds}")
+                    # print(f"Time: {matchtime} Team 1: {team1name} odds: {team1odds} Team 2: {team2name} odds: {team2odds}")
+                    match_list.append(Match(matchtime, team1name, team2name, "GG", team1odds, team2odds))
                 except:
                     continue
+                return match_list
 
-# scrapeBW()
+# l = scrapeBW()
+# print(len(l))

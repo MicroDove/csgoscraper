@@ -9,7 +9,7 @@ class Match:
         self.odds[bookmaker] = (oddsteam1, oddsteam2)
 
     def __str__(self):
-        return f"{self.team1} vs {self.team2} Start: {self.start}"
+        return f"{self.team1} vs {self.team2} Start: {self.start} Number of Odds: {len(self.odds)}"
     
     def __add__(self, other):
         for i in other.odds:

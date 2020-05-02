@@ -1,4 +1,4 @@
-import Match
+from Match import Match
 from scrapeEGB import scrapeEGB
 from scrapeCSGL import scrapeCSGL
 from scrapeTP import scrapeTP
