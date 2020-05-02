@@ -28,20 +28,23 @@ def scrapeBW():
             title = dd.find("div", class_="titleText")
             matches = dd.find_all("div", class_="oneLineEventItem")
             for match in matches:
-                time_text = match.find("div", class_="oneLineDateTime").text
-                time = datetime.strptime(time_text, '%H:%M').time()
-                matchtime = datetime.combine(date.today(), time)
-                team1name = match.find("span", class_="teamNameFirstPart teamNameHomeTextFirstPart")
-                if team1name == None:
-                    team1name = match.find("span", class_="teamNameFirstPart teamNameHomeTextFirstPart smallFont")
-                team1name = team1name.text
-                team2name = match.find("span", class_="teamNameFirstPart teamNameAwayTextFirstPart")
-                if team2name == None:
-                    team2name = match.find("span", class_="teamNameFirstPart teamNameAwayTextFirstPart smallFont")
-                team2name = team2name.text
-                odds = match.find_all("div", class_="odds")
-                team1odds = odds[0].text
-                team2odds = odds[1].text
-                print(f"Time: {matchtime} Team 1: {team1name} odds: {team1odds} Team 2: {team2name} odds: {team2odds}")
+                try:
+                    time_text = match.find("div", class_="oneLineDateTime").text
+                    time = datetime.strptime(time_text, '%H:%M').time()
+                    matchtime = datetime.combine(date.today(), time)
+                    team1name = match.find("span", class_="teamNameFirstPart teamNameHomeTextFirstPart")
+                    if team1name == None:
+                        team1name = match.find("span", class_="teamNameFirstPart teamNameHomeTextFirstPart smallFont")
+                    team1name = team1name.text
+                    team2name = match.find("span", class_="teamNameFirstPart teamNameAwayTextFirstPart")
+                    if team2name == None:
+                        team2name = match.find("span", class_="teamNameFirstPart teamNameAwayTextFirstPart smallFont")
+                    team2name = team2name.text
+                    odds = match.find_all("div", class_="odds")
+                    team1odds = odds[0].text
+                    team2odds = odds[1].text
+                    print(f"Time: {matchtime} Team 1: {team1name} odds: {team1odds} Team 2: {team2name} odds: {team2odds}")
+                except:
+                    continue
 
 # scrapeBW()

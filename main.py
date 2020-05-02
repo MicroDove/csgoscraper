@@ -3,6 +3,7 @@ from scrapeEGB import scrapeEGB
 from scrapeCSGL import scrapeCSGL
 from scrapeTP import scrapeTP
 from scrapeGG import scrapeGG
+from scrapeBW import scrapeBW
 
 
 def main():
