@@ -1,14 +1,13 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import time as Time
+from datetime import datetime, date
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import presence_of_element_located
-
-#This example requires Selenium WebDriver 3.13 or newer
 
 
 def scrapeGG():
@@ -17,19 +16,23 @@ def scrapeGG():
     driver.get('https://ggbet.com/en/counter-strike')
 
     driver.find_element_by_xpath('//*[@class="viewToggler__icon___M-I-X __app-Icon"]').click()
+    driver.execute_script("window.scrollTo(0, 1080)")
 
-    Time.sleep(5)
+    Time.sleep(3)
     soup = BeautifulSoup(driver.page_source,  features="html.parser")
 
     matches = soup.find_all("div", class_="sportEventRowNew__container___1iQKC")
 
-    test = open('test.html', 'w')
-    print(matches[0].prettify(), file=test)
-    test.close()
+    # test = open('test.html', 'w')
+    # print(matches[0].prettify(), file=test)
+    # test.close()
 
     for match in matches:
-        #time = match.find_all("div", class_="t--center match-row--large__time-to-start visible")
-        matchtime = 0
+        time_set = match.find_all("div", class_="matchDateTime__date___2Hw-c")
+        time_to_match = [(i.contents[0].text, i.contents[1]) for i in time_set]
+        year = str(date.today().year)
+        time_string = str(time_to_match[0][1])+' '+year+' '+ str(time_to_match[0][0])
+        matchtime = datetime.strptime(time_string, '%b %d %Y %H:%M')
         teams = match.find_all("div", class_="__app-LogoTitle-name LogoTitle__name___2LTlu")
         team1name = teams[0].get_text()
         team2name = teams[1].get_text()
@@ -38,10 +41,6 @@ def scrapeGG():
             continue
         team1odds = odds[0].get_text()
         team2odds = odds[1].get_text()
-        print("Time: {:30} Team 1: {:15} odds: {:5} Team 2: {:15} odds: {:5}".format(matchtime, team1name, team1odds, team2name, team2odds))
+        print(f"Time: {matchtime} Team 1: {team1name} odds: {team1odds} Team 2: {team2name} odds: {team2odds}")
 
-
-
-
-
-scrapeGG()
+# scrapeGG()
