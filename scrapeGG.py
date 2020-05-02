@@ -17,7 +17,11 @@ def scrapeGG():
     wait = WebDriverWait(driver, 4)
     driver.get('https://ggbet.com/en/counter-strike')
 
-    driver.find_element_by_xpath('//*[@class="viewToggler__icon___M-I-X __app-Icon"]').click()
+    try:
+        driver.find_element_by_xpath('//*[@class="viewToggler__icon___M-I-X __app-Icon"]').click()
+    except:
+        print("Error: GG in Live Mode")
+        
     driver.execute_script("window.scrollTo(0, 1080)")
 
     Time.sleep(3)
@@ -51,5 +55,5 @@ def scrapeGG():
             continue
         return match_list
 
-l = scrapeGG()
-print(len(l))
+# l = scrapeGG()
+# print(len(l))

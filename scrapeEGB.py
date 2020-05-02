@@ -42,4 +42,4 @@ def scrapeEGB():
             print("Time: {:30} Team 1: {:15} odds: {:5} Team 2: {:15} odds: {:5}".format(matchtime, team1name, team1odds, team2name, team2odds))
      
 # driver.find_element_by_xpath('//*[@class="filters__link-clear"]').click()
-scrapeEGB()
+# scrapeEGB()
