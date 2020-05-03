@@ -64,4 +64,5 @@ def scrapeGG():
     return match_list
 
 # l = scrapeGG()
-# print(len(l))
+# for i in l:
+#     print(i)

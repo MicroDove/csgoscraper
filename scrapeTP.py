@@ -42,4 +42,5 @@ def scrapeTP():
     return match_list
 
 # l = scrapeTP()
-# print(len(l)) 
+# for i in l:
+#     print(i)

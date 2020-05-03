@@ -14,9 +14,11 @@ class Match:
     def __add__(self, other):
         for i in other.odds:
             self.odds[i] = other.odds[i]
+        return self
 
     def __eq__(self, other):
-        if self.start == other.start and self.team1 == other.team1 and self.team2 == other.team2:
+        time_margin_of_error = dt.timedelta(minutes=-30) <= (self.start - other.start) <= dt.timedelta(minutes=30)
+        if (self.team1 == other.team1 and self.team2 == other.team2) and (self.start == other.start or time_margin_of_error):
             return True
         else:
             return False
@@ -31,9 +33,22 @@ class Match:
 
 if __name__ == "__main__":        
     # here is an example match object
-    m = Match(dt.datetime(2020, 4, 20), "Swole Patrol", "Fnatic", "EGB", 1.61, 2.1)
-    m.timeleft()
-    print(m)
-    print(m.timeleft())
+    m1 = Match(dt.datetime(2020, 4, 20), "Swole Patrol", "Fnatic", "EGB", 1.61, 2.1)
+    m1.timeleft()
+    print(m1)
+    print(m1.timeleft())
+    m2 = Match(dt.datetime(2020, 4, 20), "Swole Patrol", "Fnatic", "EGB", 1.61, 2.1)
+    print(m1 == m2)
+    m3 = Match(dt.datetime(2020, 5, 20), "Swole Patrol", "Fnatic", "GG", 2.1, 1.61)
+    print(m1 == m3)
+    print(m1+m3)
+    m1+=m3
+    print(m1.odds)
+    m1 = Match(dt.datetime(2020, 4, 20, 8), "Swole Patrol", "Fnatic", "EGB", 1.61, 2.1)
+    m4 = Match(dt.datetime(2020, 4, 20, 7, 59, 59), "Swole Patrol","Fnatic", "GG", 2.1, 1.61)
+    print(m1)
+    print(m4)
+    print(m4 == m1)
+    print(m1 == m4)
 
 

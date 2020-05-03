@@ -6,10 +6,7 @@ from scrapeBW import scrapeBW
 
 def matchtable():
     match_table = dict()
-    big_list = [scrapeTP(), scrapeGG(), scrapeBW()]
-    for i in big_list:
-        if i == None:
-            big_list.remove(i)
+    big_list = [scrapeTP(), scrapeGG()]
     big_list.sort(key=len)
     for l in big_list:
         for match in l:
@@ -19,3 +16,7 @@ def matchtable():
             else:
                 match_table[h] = match
     return match_table
+
+h = matchtable()
+for i in h:
+    print(h[i])
