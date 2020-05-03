@@ -25,7 +25,6 @@ def scrapeBW():
     days = soup.find_all("div", class_="collapsablePanel alternativeHeaderBackground")
 
     match_list = []
-
     for d in days:
         day = d.find_all("div", class_="collapsablePanel")
         for dd in day:
@@ -51,7 +50,8 @@ def scrapeBW():
                     match_list.append(Match(matchtime, team1name, team2name, "GG", team1odds, team2odds))
                 except:
                     continue
-                return match_list
+    return match_list
 
 # l = scrapeBW()
-# print(len(l))
+# for i in l:
+#     print(i)
