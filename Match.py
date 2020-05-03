@@ -3,8 +3,8 @@ import datetime as dt
 class Match:
     def __init__(self, start, team1, team2, bookmaker, oddsteam1, oddsteam2):
         self.start = start
-        self.team1 = team1
-        self.team2 = team2
+        self.team1 = team1.upper()
+        self.team2 = team2.upper()
         self.odds = dict()
         self.odds[bookmaker] = (oddsteam1, oddsteam2)
 
